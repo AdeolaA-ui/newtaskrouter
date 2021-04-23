@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <title>Plastk Customer Service</title>
+        <link href="custom/favicon.ico" rel="shortcut icon" type="image/x-icon">
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="https://media.twiliocdn.com/sdk/js/client/releases/1.5.1/twilio.min.js"></script>
+        <script type="text/javascript" src="//media.twiliocdn.com/taskrouter/js/v1.20/taskrouter.min.js"></script>
+        <!-- script type="text/javascript" src="https://media.twiliocdn.com/taskrouter/js/v2/twilio-taskrouter-worker.min.js"></script -->
+        
+        <script src="clientTr.js"></script>
+        <link rel="stylesheet" href="custom/client.css">
+        <script>
+            var clientId = "";
+            function endConference() {
+                $("div.callMessages").html("Please wait, ending conference.");
+                logger("End the conference: " + theConference);
+                // setButtons("endConference()");
+                setButtonEndConference(true);
+                $.get("conferenceEndFn.php?conferenceName=" + theConference, function (theResponse) {
+                    logger("Response: " + theResponse);
+                    theConference = "";
+                }).fail(function () {
+                    logger("- Error ending conference.");
+                    return;
+                });
+            }
+            function setButtonEndConference(value) {
+                $('#btn-endconf').prop('disabled', value);
+            }
+            function clearMessages() {
+                $("div.msgClientid").html("Token id: <b>" + clientId + "</b>");
+                $("div.msgTokenPassword").html("");
+            }
+            function logger(message) {
+                var log = document.getElementById('log');
+                log.value += "\n> " + message;
+                log.scrollTop = log.scrollHeight;
+            }
+            function clearLog() {
+                log.value = "+ Ready";
+            }
+            window.onload = function () {
+                var log = document.getElementById('log');
+                log.value = "+++ Start.";
+                setTrButtons('init');
+                setButtonEndConference(true);
+            };
+        </script>
+    </head>
+    <body>
+        <script type="text/javascript" src="custom/pageTop.js"></script>
+        <div class="container">
+            <div class="banner">
+                <img src="./custom/plastk.png" alt="banner"/>
+            </div>
+            <div id="chatBox" style="height: 260px">
+                <div class="panelTitle">
+                    Customer Representative
+                </div>
+                <div class="panelArea" style="margin-top: 6px;">
+                    <table>
+                        <tr><td> <label for="clientid"> Identity </label>  </td><td><input id="clientid" type="text"/></td><td><div class="msgClientid">Set Client ID.</div></td></tr>
+                        <tr><td><label for="tokenPassword"> Password </label> </td><td><input type="password" id="tokenPassword" name="tokenPassword" placeholder="Your access password"/></td><td><div class="msgTokenPassword"></div></tr>
+                    </table>
+                </div>
+                <div>
+                    <table class="worker_table">
+                        <tr class="spacing_tr">
+                            <td><div>WorkSpace: </div></td>
+                            <td colspan="5"><div>Not set.</div></td>
+                        </tr>
+                        <tr>
+                            <td><div>Worker status: </div></td>
+                            <td colspan="5"><div>Requires an access token.</div></td>
+                        </tr>
+                        <tr class="btn_grid workerbtn_margin">
+                            <td><button class="abutton" id="btn-trtoken" onclick="trToken();" style="visibility: visible;">Get access token</button></td>
+                            <td><button class="abutton" id="btn-online" onclick="goAvailable();" disabled style="visibility: visible;">Go online</button></td>
+                            <td><button class="abutton" id="btn-offline" onclick="goOffline();" disabled style="visibility: visible;">Go offline</button></td>
+                            <td><button class="abutton" id="btn-acceptTR" onclick="acceptReservation();" disabled style="visibility: visible;">Accept</button></td>
+                            <td><button class="abutton" id="btn-rejectTR" onclick="rejectReservation();" disabled style="visibility: visible;">Reject</button></td>
+                            <!-- td><button class="abutton" id="btn-trHangup" onclick="trHangup();" disabled style="visibility: visible;">End reservation</button></td -->
+                            <td><button class="abutton" id="btn-endconf" onclick="endConference();" disabled style="visibility: visible;">End conference</button></td>
+                        </tr>
+                        <tr class="spacing_tr">
+                            <td><div>TaskRouter: </div></td>
+                            <td><div>Need to refresh the token.</div></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div id="logBox">
+                <div class="panelTitle">Log messages</div>
+                <div class="panelArea">
+                    <textarea id="log"></textarea>
+                </div>
+                <div>
+                    <table>
+                        <tr>
+                            <td><button class="clear_btn" id="clearLog" onclick="clearLog();">Clear</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="custom/pageBottom.js"></script>
+    </body>
+</html>

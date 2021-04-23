@@ -1,0 +1,233 @@
+/*  HTML Links -----------------------------------------------------------------
+
+*/
+*{
+    margin:0;
+    font-size: 1rem;
+}
+
+body{
+    width: 100%;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration:none;
+    color: white;
+}
+a:hover {
+    color: white;
+}
+a:visited {
+    text-decoration:none;
+    color: white;
+}
+
+h1 {
+    margin: 0;
+    color: #53974c;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-family: Times, "Times New Roman", serif;
+    font-weight: bold;
+    font-size: 2.3em;
+}
+
+textarea{
+    width: 100%;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    flex-direction: column;
+    min-width: 600px;
+    background-color: #d4d4d4;
+    min-height:100vh;
+    vertical-align: top;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+.panelTitle
+{
+    color: black;
+    background: #63e254;
+    padding: 9px;
+    font: Helvetica,Arial,sans-serif;
+    font-size: 14px; 
+}
+.panelArea
+{
+    margin-top: 6px;
+    max-width: 900px;
+    min-width: 300px;
+}
+/* -------------------------------------------------------------------------- */
+#chatBox
+{
+    flex-direction: column;
+    margin: 1rem 0 1rem 0;
+    min-height: 380px;
+    max-height: 700px;
+    width: 80%;
+    border: solid 1px rgba(119, 119, 119, 0.333);
+    padding: 6px;
+    border-width: 1px;
+    border-radius: 6px;
+    background-color: whitesmoke;
+    vertical-align: top;
+}
+
+.banner{
+    width: 80%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0 1rem 0;
+    vertical-align: top;
+    border-radius: 3px;
+}
+
+.banner > img {
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-width: 200px;
+    max-width: 250px;
+    background-color: #dfdddd;
+}
+
+.workerbtn_margin{
+    margin-top: 1rem;
+}
+
+.worker_table{
+    display: flex;
+    flex-direction:column;
+    margin-bottom: 1rem;
+}
+
+.worker_table > table {
+    flex-direction: column;
+}
+
+.spacing_tr{
+    height: 3rem;
+    width: 100%;
+    margin: 0.5rem 0 0.5rem 0;
+}
+
+#chatMessages
+{
+    height: 206px; 
+    width: 630px;
+    margin: 3px;
+    padding: 3px;
+}
+
+input {
+    line-height: 1.4em;
+    font-size: 14px;
+    width: 180px;
+}
+
+#callType {
+    width: 180px;
+    font-size: 0.8em;
+    padding: 3px;
+    background-color: white;
+    border-width: 1px;
+    border-radius: 6px;
+    background: white;
+}
+select option {
+    color: white;
+    background: #52d152;
+}
+
+/* -------------------------------------------------------------------------- */
+#logBox
+{
+    flex-direction: column;
+    height: 400px;
+    width: 80%; 
+    margin-top: 6px;
+    border: solid 1px rgba(119, 119, 119, 0.333);
+    padding: 6px;
+    border-width: 1px;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    background-color: whitesmoke;
+}
+#log
+{
+    height: 196px; 
+    width: 100%;
+    margin: 3px 3px 3px 0px;
+    padding: 3px;
+}
+
+.btn_grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-gap: 20px 50px;
+}
+
+.abutton {
+    width: 100%;
+    height: 60px;
+    border-radius: 5px;
+    color: white;
+    background-color: #52d152;
+    font: Helvetica,Arial,sans-serif;
+    font-size: 1rem; 
+}
+.abutton:hover,
+.abutton:focus {
+    background-color: #52d152;  /* hover background color */
+    border-color: #52d152;      /* top hover border */
+    text-decoration: none;
+    text-shadow: 1px 1px rgba(0,0,0,0.3);
+}
+.abutton.active {
+    background-color: gray;
+    border-color: #2a65a0;
+    border-bottom-color: #3884CF;
+}
+.abutton:disabled {
+    color: red;
+    background-color: #cccccc;
+}
+
+.clear_btn{
+    width:200px;
+    height:60px;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #52d152;
+    font-size: 1rem;
+}
+
+/* overrides extra padding on button elements in Firefox */
+button#clearLog::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+
+@media screen and (max-width: 710px) {
+
+    body{
+        min-height: 100%;
+    }
+    #chatBox {
+        min-height: 500px;
+
+    }
+  }
+
+/* -------------------------------------------------------------------------- */
